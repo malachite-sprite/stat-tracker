@@ -2,34 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { createGlobalStyle } from "styled-components";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/root";
-import ErrorPage from "./error-page";
-import Logger from "./routes/logger";
-import Calendar from "./routes/calendar";
+import Router from "./router";
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  html,body,#root {
     margin: 0;
+    padding: 0;
+    height: 100%;
   }
 `;
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/logger",
-        element: <Logger />,
-      },
-      {
-        path: "/calendar",
-        element: <Calendar />,
-      },
-    ],
-  },
-]);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -37,7 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <RouterProvider router={router} />
+    <Router />
   </React.StrictMode>
 );
 
